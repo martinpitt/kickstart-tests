@@ -15,7 +15,12 @@ jobs:
       options: --privileged
     steps:
       - name: Install lorax
-        run: dnf install -y lorax
+        run: dnf install -y lorax tmate openssh-clients
+
+      - name: hack action-tmate
+        run: ln -s /bin/true /usr/bin/apt-get
+
+      - uses: mxschmitt/action-tmate@v3
 
       - name: Run lorax
         # The download.fedoraproject.org automatic redirector often selects download-ib01.f.o. for GitHub's cloud, which is too unreliable; manually select a good one that is nearby
